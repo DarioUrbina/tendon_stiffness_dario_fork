@@ -35,7 +35,7 @@ for stiffness_version_A in [0, 3, 5, 8]:
 		random_seed+=1
 		# train model_A
 		np.random.seed(random_seed) # change the seed for different initial conditions
-		tf.random.set_random_seed(random_seed)
+		tf.random.set_seed(random_seed)
 		[babbling_kinematics, babbling_activations] =\
 			babbling_fcn(
 				MuJoCo_model_name=MuJoCo_model_name_A,
@@ -50,7 +50,7 @@ for stiffness_version_A in [0, 3, 5, 8]:
 		cum_activations_A_babble = babbling_activations
 		#A_A test
 		np.random.seed(random_seed) # change the seed for different initial conditions
-		tf.random.set_random_seed(random_seed)
+		tf.random.set_seed(random_seed)
 		[ best_reward_so_far, all_rewards, best_features_so_far, real_attempt_activations, exploration_run_no ]=\
 		learn_to_move_2_fcn(
 			MuJoCo_model_name=MuJoCo_model_name_A_walk,

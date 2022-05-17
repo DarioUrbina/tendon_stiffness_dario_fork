@@ -362,7 +362,7 @@ def copy_model_fcn(original_model):
 	config=original_model.get_config()
 	new_model=tf.keras.Sequential.from_config(config)
 	new_model.set_weights(original_model.get_weights())
-	new_model.compile(optimizer=tf.train.AdamOptimizer(0.01),loss='mse',metrics=['mse'])  # mean squared error
+	new_model.compile(optimizer=tf.optimizers.Adam(0.01),loss='mse',metrics=['mse'])  # mean squared error
 	return new_model
 
 def inverse_mapping_fcn(kinematics, activations, log_address=None, early_stopping=False, **kwargs):
@@ -394,7 +394,7 @@ def inverse_mapping_fcn(kinematics, activations, log_address=None, early_stoppin
 		model.add(tf.keras.layers.Dense(15, activation='relu'))
 		# Add a softmax layer with 3 output units:
 		model.add(tf.keras.layers.Dense(3, activation='sigmoid'))
-		model.compile(optimizer=tf.train.AdamOptimizer(0.01),
+		model.compile(optimizer=tf.optimizers.Adam(0.01),
 	              loss='mse',       # mean squared error
 	              metrics=['mse'])  # mean squared error
 		#training the model
